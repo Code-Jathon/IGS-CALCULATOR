@@ -1,15 +1,16 @@
 from matplotlib.pyplot import legend
-from sympy import Symbol
+from sympy import symbols
 from sympy import integrate
 from sympy import *
 
-dx = Symbol('x')
+dx = symbols('x') #Diferencial
+
 fx = input("Ingrese la ecuacion: ") #Lee la funcion
 fx = sympify(fx)
 pprint(fx)
 
 print("El resultado de la integral es: ")
-print(integrate(fx), dx) #Intrega la funcion
+pprint(integrate(fx, dx)) #Intrega la funcion
 
 def grafica(): #Menu
     print("----------- ¿Desea conocer la grafica? -----------")
