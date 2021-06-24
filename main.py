@@ -31,10 +31,28 @@ def main():
     notebook.add(pes1, text='Área')
     notebook.add(pes2, text='Volumen')
     notebook.add(pes3, text='About Us')
-    integrales= tkinter.Label(pes0,text="haga algo snakeeeeeeeeee")
-    integrales.pack()
+    volumen=Label(pes2, text="Volúmen Sólidos de Revolución")
+    volumen.place(x=500, y=2)
+    #volumen.pack()
     ventana.geometry("1200x650")
     ventana.resizable(1,1)
+
+    #ETIQUETAS DE TEXTO
+    lblFuncion1=Label(pes2, text="Ingrese la función") #PRIMERA FUNCIÓN
+    lblFuncion1.place(x=10, y=10, width=100, height=30)#POSICIONAMIENTO
+
+    lblFuncion2=Label(pes2,text="Ingrese la función")
+    lblFuncion2.place(x=10, y=70, width=100, height=30)
+    
+    #CAJAS DE ENTRADA DE FUNCIONES
+    boxFuncion1=Entry(pes2) #CAJA PARA PRIMERA FUNCION
+    boxFuncion1.place(x=10,y=35, width=100, height=30)
+    boxFuncion2=Entry(pes2)#CAJA PARA SEGUNDA FUNCION
+    boxFuncion2.place(x=10, y=100, width=100, height=30)
+
+
+
+
     ventana.mainloop()
 
 if __name__=='__main__':
