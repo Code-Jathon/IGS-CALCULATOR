@@ -1,3 +1,7 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import pylab as pl
+
 def grafica(expre1,expre2,lim1,lim2):
     int(expre1)
     int(expre2)
