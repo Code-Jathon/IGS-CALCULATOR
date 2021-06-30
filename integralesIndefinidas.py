@@ -4,7 +4,7 @@ from sympy import integrate
 from sympy import *
 from tkinter import messagebox
 
-def ecuacionD(fx): #Lee la funcion
+def ecuacionI(fx): #Lee la funcion
 
     dx = symbols('x') #Diferencial
     fx = sympify(fx)

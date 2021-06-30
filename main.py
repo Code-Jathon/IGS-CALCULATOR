@@ -4,6 +4,7 @@ import tkinter as tk
 import tkinter
 import tkinter.font as tkFont
 from integralesIndefinidas import *
+from integralesDefinidas import *
 
 def main():
     ventana= Tk()
@@ -28,7 +29,7 @@ def main():
     #PartIndefi
     def save():
         prueba = caja1.get()
-        solucion = ecuacionD(prueba)
+        solucion = ecuacionI(prueba)
         muestraI.config(text = solucion)
 
         #Ecuacion
@@ -38,7 +39,7 @@ def main():
     boton3 = Button(pes0, text = "Borrar", width = "20", height = "1", font = ("Calibri 14 bold italic"), 
                     command = lambda: caja1.delete(0, END))
     boton4 = Button(pes0, text = "Ingresar", width = "20", height = "1", font = ("Calibri 14 bold italic"),
-                    command =save)
+                    command = save)
     
         #Resultado    
     resulI = tk.Label(pes0, text = "El resultado de la integral es:", width = "35", height = "1", font = ("Calibri 14 italic"))
@@ -59,6 +60,14 @@ def main():
     botonGraf = Button(pes0, command = obtenerI, text = "Grafica", width = "20", font = ("Calibri 14 bold italic"))
     
     #PartDefi
+    def obtenerD():
+        LimI = cajaInfe.get()
+        LimS = cajaSupe.get()
+        ec   = caja2.get()
+        res  = menuD.get()
+        solucionI = ecuacionD(LimI, LimS, ec, res)
+        muestraD.config(text = solucionI)
+
         #Limites
     limInfe = tk.Label(pes0, text="Ingrese limite inferior:", width = "35", height = "1", font = ("Calibri 14 italic"))
     cajaInfe = Entry(pes0, width = 20, font = ("Calibri 16"))
@@ -67,31 +76,23 @@ def main():
         #Ecuacion
     ecuaD = tk.Label(pes0, text ="Digite la ecuacion:", width = "35", height = "1", font = ("Calibri 14 italic"))
     caja2 = Entry(pes0, width = 45, font = ("Calibri 16"))
-        #Botones de verificacion
-    boton5 = Button(pes0, text = "Borrar", width = "20", height = "1", font = ("Calibri 14 bold italic"), 
-                    command = lambda: caja2.delete(0, END))
-    boton6 = Button(pes0, text = "Ingresar", width = "20", height = "1", font = ("Calibri 14 bold italic"),
-                    )
         #Pregunta
     question = '''          ¿Desea conocer el resultado
     en fraccionario o en decimales ?'''
     pregu = tk.Label(pes0, text = question, width = "35", height = "2", font = ("Calibri 14 italic"), justify = tk.LEFT)
-        #Menu
-    def obtenerD():
-        if (menuD.get() == "Fraccionario."):
-            print(11)
-        elif(menuD.get() == "Decimales."):
-            print(0)
-        else:
-            messagebox.showerror("Error", "Seleccione una opcion por favor")
-
     menuD =  ttk.Combobox(pes0, width = "35", font = ("Calibri 14 italic"), state = "readonly")
     menuD['values'] = (  "Fraccionario.",
                             "Decimales.")
     menuD.current()
-    tipo = Button(pes0, command = obtenerD, text = "Resultado", width = "20", height = "1", font = ("Calibri 14 bold italic"))
+
+        #Botones de verificacion
+    boton5 = Button(pes0, text = "Borrar", width = "20", height = "1", font = ("Calibri 14 bold italic"), 
+                    command = lambda: caja2.delete(0, END))
+    boton6 = Button(pes0, text = "Resultado", width = "20", height = "1", font = ("Calibri 14 bold italic"),
+                    command = obtenerD)
+
     resulD = tk.Label(pes0, text = "El resultado de la integral es:", width = "35", height = "1", font = ("Calibri 14 italic"))
-    muestraD = tk.Label(pes0, text = "____________________", width = "35", height = "1", font = ("Calibri 14 italic"))
+    muestraD = tk.Label(pes0, text = "", width = "35", height = "1", font = ("Calibri 14 italic"))
 
     def indefi():
         ocultarD()
@@ -113,13 +114,12 @@ def main():
         cajaSupe.place(x = 630 , y = 170)
         ecuaD.grid(row = 4, column = 0, pady = 4)
         caja2.grid(row = 4, column = 1)
-        boton5.grid(row = 5, column= 0, pady = 25)
-        boton6.grid(row = 5, column= 1)
-        pregu.grid(row = 6, column = 0)
-        menuD.place(x = 630 , y = 350)
-        tipo.grid( row = 7, column = 1, pady = 15)
-        resulD.grid(row = 8, column = 0)
-        muestraD.place( x = 630, y = 475)
+        pregu.grid(row = 5, column = 0, pady = 25)
+        menuD.place(x = 630 , y = 310)
+        resulD.grid(row = 7, column = 0)
+        muestraD.place( x = 630, y = 360)    
+        boton5.grid(row = 8, column = 0, pady = 25)
+        boton6.grid(row = 8, column = 1)
 
     #OcultarWidgets
     def ocutarI():
@@ -140,15 +140,13 @@ def main():
         cajaSupe.place_forget()
         ecuaD.grid_forget()
         caja2.grid_forget()
-        boton5.grid_forget()
-        boton6.grid_forget()
         pregu.grid_forget()
         menuD.place_forget()
-        tipo.grid_forget()
+        boton5.grid_forget()
+        boton6.grid_forget()
         resulD.grid_forget()
         muestraD.place_forget()
         
-
     #Botones_I&D
     boton1 = Button(pes0, text = "INDEFINIDAS", width = "78", height = "3", command = indefi, font = ("Calibri 10 bold italic"))
     boton2 = Button(pes0, text = "DEFINIDAS", width = "80", height = "3", command = defi, font = ("Calibri 10 bold italic"))

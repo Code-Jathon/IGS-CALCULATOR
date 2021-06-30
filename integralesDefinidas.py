@@ -4,31 +4,30 @@ from    sympy   import *
 import  matplotlib.pyplot as plt
 from    matplotlib.pyplot import legend
 import  numpy as np
+from    tkinter import messagebox
 
-dx = symbols('x') #Diferencial
+def ecuacionD(i, s, fx, resp):
 
-i = input('Ingrese el limite inferior de la ecuacion: ') #Limites
-s = input('Ingrese el limite superior de la ecuacion: ')
+    dx = symbols('x') #Diferencial
+    fx = sympify(fx)
+    
+    print("limite inferior: " + i)
+    print("limite superior: " + s)
+    pprint(fx)
 
-fx = input("Ingrese la ecuacion: ")
-fx = sympify(fx)
-pprint(fx)
+    if(resp == "Fraccionario."):
+        inte = integrate(fx, (dx, i, s)) #Fraccionario
+        print("El resultado de la integral es: ")
+        pprint(inte)
+    elif(resp == "Decimales."):
+        inte = integrate(fx, (dx, i, s)).evalf(4) #Decimal
+        print("El resultado de la integral es: ")
+        pprint(inte)
+    else:
+        messagebox.showerror("Error", "Seleccione una opcion por favor")
 
-print("-----------¿Desea conocer el resultado en fraccionarios o decimales -----------")#Menu
-print("1. Fraccionarios")
-print("2. Decimales")
-print("-----------------------------------")     
+    s = plot(fx, legend = True, show = False)#Grafica
+    s[0].line_color = 'orange'
+    s.show()
 
-resp = input("INGRESE LA OPCION DE SU PREFERENCIA: ") #Mostrar resultado
-if(resp == '1'):
-    inte = integrate(fx, (dx, i, s)) #Fraccionario
-elif(resp == '2'):
-    inte = integrate(fx, (dx, i, s)).evalf(4) #Decimal
-else:
-    print("Opcion no valida")
-print("El resultado de la integral es: ")
-pprint(inte)
-
-s = plot(fx, legend = True, show = False)#Grafica
-s[0].line_color = 'orange'
-s.show()
+    return inte
