@@ -6,6 +6,9 @@ from tkinter import messagebox
 
 def ecuacionI(fx): #Lee la funcion
 
+    if(fx == ""):
+        messagebox.showerror("Error", "Ingrese una integral por favor")
+
     dx = symbols('x') #Diferencial
     fx = sympify(fx)
     pprint(fx)
@@ -17,7 +20,7 @@ def ecuacionI(fx): #Lee la funcion
     return integral
     
 def graficaIS(fx, sol ,resp): #Menu Despegable
-    
+  
     dx = symbols('x') #Diferencial
     fx = sympify(fx)
     if(resp == "Si."):
@@ -27,8 +30,8 @@ def graficaIS(fx, sol ,resp): #Menu Despegable
 
     elif(resp == "Si, mostrando la grafica de la integral."):
         s = plot(fx, sol, legend = True, show = False)
-        s[0].line_color = 'orange'
-        s[1].line_color = 'b'
+        s[0].line_color = '#007b99'
+        s[1].line_color = 'orange'
         s.show()
     else:
         messagebox.showerror("Error", "Seleccione una opcion por favor")
