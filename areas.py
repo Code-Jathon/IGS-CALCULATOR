@@ -7,6 +7,7 @@ from sympy.core import expr
 from sympy.simplify.fu import L
 sympy.init_printing()
 
+# Funciones para main.py
 
 def puntos_corte(expre_1,expre_2,): 
     x, y, z = symbols('x, y, z')
