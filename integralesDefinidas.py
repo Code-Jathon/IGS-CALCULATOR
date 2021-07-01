@@ -15,7 +15,6 @@ def ecuacionD(i, s, fx, resp):
     elif(fx == ""):
         messagebox.showerror("Error", "Ingrese una integral por favor")
        
-
     dx = symbols('x') #Diferencial
     fx = sympify(fx)
     
